@@ -72,3 +72,6 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+/A2_AGP/Saved/Cooked
+/A2_AGP/Saved/StagedBuilds/Windows/A2_AGP/Content/Paks
+/A2_AGP/Saved/Shaders/PCD3D_SM6-PCD3D_SM6

@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\y3t1\\advanced games programming\\a2\\intermediate\\source\\a2_agp.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\y3t1\\advanced games programming\\a2\\intermediate\\build\\win64\\x64\\a2_agp\\shipping\\core\\sharedpch.core.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\y3t1\\advanced games programming\\a2\\intermediate\\build\\win64\\x64\\unrealgame\\shipping\\a2_agp\\definitions.a2_agp.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
