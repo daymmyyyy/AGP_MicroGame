@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-A2_AGP.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\A2_AGPEditor\Development\Core\SharedPCH.Core.Project.ValApi.Cpp20.h.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\Module.A2_AGP.cpp.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\Default.rc2.res"
+/OUT:"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\UnrealEditor-A2_AGP.lib"

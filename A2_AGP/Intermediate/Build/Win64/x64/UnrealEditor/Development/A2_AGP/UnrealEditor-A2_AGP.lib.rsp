@@ -1,0 +1,15 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-A2_AGP.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\A2_AGPEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderOldest.h.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\A2_AGP.init.gen.cpp.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\DisappearingPlatform.gen.cpp.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\A2_AGP.cpp.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\DisappearingPlatform.cpp.obj"
+"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\Default.rc2.res"
+/OUT:"C:\Users\dayan\OneDrive\Documents\GitHub\AGP_MicroGame\A2_AGP\Intermediate\Build\Win64\x64\UnrealEditor\Development\A2_AGP\UnrealEditor-A2_AGP.lib"

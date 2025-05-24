@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "A2_AGP",
+			"Path": "..\\Source\\A2_AGP.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "A2_AGPEditor",
+			"Path": "..\\Source\\A2_AGPEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

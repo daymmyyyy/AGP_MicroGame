@@ -1,10 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\Y3T1\\Advanced Games Programming\\A2\\Intermediate\\Source\\A2_AGP.Build.cs",
-		"D:\\Y3T1\\Advanced Games Programming\\A2\\Intermediate\\Source\\A2_AGP.Target.cs",
-		"D:\\Y3T1\\Advanced Games Programming\\A2\\Intermediate\\Source\\A2_AGPClient.Target.cs",
-		"D:\\Y3T1\\Advanced Games Programming\\A2\\Intermediate\\Source\\A2_AGPEditor.Target.cs",
-		"D:\\Y3T1\\Advanced Games Programming\\A2\\Intermediate\\Source\\A2_AGPServer.Target.cs"
+		"C:\\Users\\dayan\\OneDrive\\Documents\\GitHub\\AGP_MicroGame\\A2_AGP\\Source\\A2_AGP\\A2_AGP.Build.cs",
+		"C:\\Users\\dayan\\OneDrive\\Documents\\GitHub\\AGP_MicroGame\\A2_AGP\\Source\\A2_AGP.Target.cs",
+		"C:\\Users\\dayan\\OneDrive\\Documents\\GitHub\\AGP_MicroGame\\A2_AGP\\Source\\A2_AGPEditor.Target.cs"
 	],
 	"EngineVersion": "5.4.4"
 }

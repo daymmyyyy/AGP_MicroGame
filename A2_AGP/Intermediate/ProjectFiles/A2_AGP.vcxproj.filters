@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\A2_AGP.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\A2_AGP.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\A2_AGPEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\A2_AGP">
+      <UniqueIdentifier>{B34169F7-C6B3-3A43-959F-E05F9445B017}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\A2_AGP\A2_AGP.Build.cs">
+      <Filter>Source\A2_AGP</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\A2_AGP\A2_AGP.cpp">
+      <Filter>Source\A2_AGP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\A2_AGP\A2_AGP.h">
+      <Filter>Source\A2_AGP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\A2_AGP\DisappearingPlatform.cpp">
+      <Filter>Source\A2_AGP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\A2_AGP\DisappearingPlatform.h">
+      <Filter>Source\A2_AGP</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
