@@ -61,15 +61,13 @@ void ADisappearingPlatform::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AA
 {
 	bPlayerStillOnPlatform = false;
 
-	GetWorldTimerManager().ClearTimer(DisappearTimer);
+	// Cancel flicker completely
 	GetWorldTimerManager().ClearTimer(FlickerTimer);
+	FlickerCount = 0;
 
-	if (!bIsPlatformVisible)
-	{
-		PlatformMesh->SetVisibility(true);
-		PlatformMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-		bIsPlatformVisible = true;
-	}
+	PlatformMesh->SetVisibility(true);
+	PlatformMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	bIsPlatformVisible = true;
 }
 
 
