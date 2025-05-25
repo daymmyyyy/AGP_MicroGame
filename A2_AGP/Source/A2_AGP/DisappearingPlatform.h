@@ -18,29 +18,26 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-public:
-	virtual void Tick(float DeltaTime) override;
-
 private:
-	UPROPERTY(VisibleAnywhere, Category = "Platform")
+	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* PlatformMesh;
 
-	UPROPERTY(VisibleAnywhere, Category = "Platform")
+	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* TriggerBox;
 
 	UPROPERTY()
-	bool bIsPlatformVisible;
+	AActor* PlayerActor;
 
 	UPROPERTY()
-	bool bPlayerStillOnPlatform;
+	bool bIsPlatformVisible = true;
 
 	UPROPERTY()
-	FTimerHandle DisappearTimer;
+	FTimerHandle DelayBeforeFlickerTimer;
 
 	UPROPERTY()
 	FTimerHandle FlickerTimer;
 
-	int32 FlickerCount;
+	int32 FlickerCount = 0;
 
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -50,7 +47,8 @@ private:
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	void DisappearPlatform();
-	void StartFlicker();
+	void BeginFlicker();
 	void Flicker();
+	void DisappearPlatform();
+	void ResetPlatform();
 };

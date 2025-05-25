@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\dayan\\onedrive\\documents\\github\\agp_microgame\\a2_agp\\source\\a2_agp\\disappearingplatform.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\dayan\\onedrive\\documents\\github\\agp_microgame\\a2_agp\\intermediate\\build\\win64\\x64\\a2_agpeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "c:\\users\\dayan\\onedrive\\documents\\github\\agp_microgame\\a2_agp\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\a2_agp\\definitions.a2_agp.h",
+            "c:\\users\\dayan\\onedrive\\documents\\github\\agp_microgame\\a2_agp\\source\\a2_agp\\disappearingplatform.h",
+            "c:\\users\\dayan\\onedrive\\documents\\github\\agp_microgame\\a2_agp\\intermediate\\build\\win64\\unrealeditor\\inc\\a2_agp\\uht\\disappearingplatform.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\boxcomponent.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
