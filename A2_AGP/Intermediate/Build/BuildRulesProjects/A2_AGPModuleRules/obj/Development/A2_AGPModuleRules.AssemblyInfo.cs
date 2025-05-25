@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("A2_AGPModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+681c04edb58b88bc6b17e50d0e9d784d5501c0b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed368e5dd53cb7bdb18b1dfdf637592558c43ee9")]
 [assembly: System.Reflection.AssemblyProductAttribute("A2_AGPModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("A2_AGPModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

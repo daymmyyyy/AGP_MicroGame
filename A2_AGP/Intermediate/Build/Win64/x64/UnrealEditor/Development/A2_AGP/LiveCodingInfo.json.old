@@ -1,8 +1,0 @@
-{
-	"RemapUnityFiles": 
-	{
-		"Module.A2_AGP.cpp.obj": [
-			"A2_AGP.cpp.obj"
-		]
-	}
-}
