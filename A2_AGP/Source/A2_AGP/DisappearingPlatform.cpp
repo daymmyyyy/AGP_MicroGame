@@ -18,7 +18,7 @@ ADisappearingPlatform::ADisappearingPlatform()
 	if (CubeMesh.Succeeded())
 	{
 		PlatformMesh->SetStaticMesh(CubeMesh.Object);
-		PlatformMesh->SetRelativeScale3D(FVector(2.0f, 2.0f, 0.2f));  // Scale for platform shape
+		PlatformMesh->SetRelativeScale3D(FVector(20.0f, 20.0f, 1.0f));  // Scale for platform shape
 	}
 
 	// Create trigger box
