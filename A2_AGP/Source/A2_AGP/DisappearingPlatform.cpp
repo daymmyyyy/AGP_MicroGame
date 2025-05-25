@@ -1,107 +1,115 @@
+
 #include "DisappearingPlatform.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
 #include "TimerManager.h"
-#include "Engine/World.h"
+#include "UObject/ConstructorHelpers.h"
+#include "GameFramework/Character.h" // To identify player character
 
 ADisappearingPlatform::ADisappearingPlatform()
 {
-	PrimaryActorTick.bCanEverTick = false;
+    PrimaryActorTick.bCanEverTick = false;
 
-	PlatformMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlatformMesh"));
-	SetRootComponent(PlatformMesh);
+    PlatformMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlatformMesh"));
+    SetRootComponent(PlatformMesh);
 
-	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
-	TriggerBox->SetupAttachment(PlatformMesh);
-	TriggerBox->SetCollisionProfileName(TEXT("Trigger"));
-	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &ADisappearingPlatform::OnOverlapBegin);
-	TriggerBox->OnComponentEndOverlap.AddDynamic(this, &ADisappearingPlatform::OnOverlapEnd);
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(TEXT("/Engine/BasicShapes/Cube.Cube"));
+    if (CubeMesh.Succeeded())
+    {
+        PlatformMesh->SetStaticMesh(CubeMesh.Object);
+    }
+
+    TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
+    TriggerBox->SetupAttachment(PlatformMesh);
+    TriggerBox->SetCollisionProfileName(TEXT("Trigger"));
+
+    TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &ADisappearingPlatform::OnOverlapBegin);
+    TriggerBox->OnComponentEndOverlap.AddDynamic(this, &ADisappearingPlatform::OnOverlapEnd);
+
+    bPlayerOnPlatform = false;
 }
 
 void ADisappearingPlatform::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
-	FVector Origin, Extent;
-	PlatformMesh->GetLocalBounds(Origin, Extent);
-	TriggerBox->SetBoxExtent(Extent);
-	TriggerBox->SetRelativeLocation(FVector(0, 0, Extent.Z));
+    if (PlatformMesh && TriggerBox)
+    {
+        FVector Origin, BoxExtent;
+        PlatformMesh->GetLocalBounds(Origin, BoxExtent);
+        TriggerBox->SetBoxExtent(BoxExtent);
+        TriggerBox->SetRelativeLocation(FVector(0, 0, BoxExtent.Z));
+    }
 }
 
 void ADisappearingPlatform::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+    UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+    bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (!bIsPlatformVisible || PlayerActor)
-		return;
-
-	PlayerActor = OtherActor;
-
-	// Start 2-second delay before flickering
-	GetWorldTimerManager().ClearTimer(DelayBeforeFlickerTimer);
-	GetWorldTimerManager().SetTimer(DelayBeforeFlickerTimer, this, &ADisappearingPlatform::BeginFlicker, 2.0f, false);
+    if (!bPlayerOnPlatform && OtherActor && OtherActor->IsA<ACharacter>())
+    {
+        bPlayerOnPlatform = true;
+        StartStayTimer();
+    }
 }
 
 void ADisappearingPlatform::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+    UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor == PlayerActor)
-	{
-		PlayerActor = nullptr;
-
-		GetWorldTimerManager().ClearTimer(DelayBeforeFlickerTimer);
-		GetWorldTimerManager().ClearTimer(FlickerTimer);
-
-		ResetPlatform();
-	}
+    if (OtherActor && OtherActor->IsA<ACharacter>())
+    {
+        bPlayerOnPlatform = false;
+        GetWorldTimerManager().ClearTimer(StayTimerHandle);
+    }
 }
 
-void ADisappearingPlatform::BeginFlicker()
+void ADisappearingPlatform::StartStayTimer()
 {
-	if (!PlayerActor || !TriggerBox->IsOverlappingActor(PlayerActor))
-	{
-		ResetPlatform();
-		return;
-	}
+    // Wait 2 seconds before starting flicker
+    GetWorldTimerManager().ClearTimer(StayTimerHandle);
+    GetWorldTimerManager().SetTimer(StayTimerHandle, this, &ADisappearingPlatform::StartFlicker, 2.f, false);
+}
 
-	FlickerCount = 0;
-	GetWorldTimerManager().SetTimer(FlickerTimer, this, &ADisappearingPlatform::Flicker, 0.2f, true);
+void ADisappearingPlatform::StartFlicker()
+{
+    FlickerCount = 0;
+
+    GetWorldTimerManager().SetTimer(FlickerTimerHandle, this, &ADisappearingPlatform::Flicker, 0.1f, true);
 }
 
 void ADisappearingPlatform::Flicker()
 {
-	// Player jumped off during flicker
-	if (!PlayerActor || !TriggerBox->IsOverlappingActor(PlayerActor))
-	{
-		GetWorldTimerManager().ClearTimer(FlickerTimer);
-		ResetPlatform();
-		return;
-	}
+    if (FlickerCount >= 6)
+    {
+        GetWorldTimerManager().ClearTimer(FlickerTimerHandle);
+        DisappearPlatform();
 
-	if (FlickerCount >= 6) // 3 flickers
-	{
-		GetWorldTimerManager().ClearTimer(FlickerTimer);
-		DisappearPlatform();
-		return;
-	}
+        // Set timer to reset platform after 3 seconds
+        GetWorldTimerManager().SetTimer(DisappearTimerHandle, this, &ADisappearingPlatform::ResetPlatform, 2.f, false);
+        return;
+    }
 
-	bool bVisible = (FlickerCount % 2 == 0);
-	PlatformMesh->SetVisibility(bVisible, true);
-	PlatformMesh->SetHiddenInGame(!bVisible);
-	FlickerCount++;
+    bool bVisible = (FlickerCount % 2 == 0);
+    PlatformMesh->SetVisibility(bVisible, true);
+    PlatformMesh->SetHiddenInGame(!bVisible);
+
+    FlickerCount++;
 }
 
 void ADisappearingPlatform::DisappearPlatform()
 {
-	PlatformMesh->SetVisibility(false, true);
-	PlatformMesh->SetHiddenInGame(true);
-	PlatformMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	bIsPlatformVisible = false;
+    PlatformMesh->SetVisibility(false, true);
+    PlatformMesh->SetHiddenInGame(true);
+    PlatformMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 void ADisappearingPlatform::ResetPlatform()
 {
-	PlatformMesh->SetVisibility(true, true);
-	PlatformMesh->SetHiddenInGame(false);
-	PlatformMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	bIsPlatformVisible = true;
+    PlatformMesh->SetVisibility(true, true);
+    PlatformMesh->SetHiddenInGame(false);
+    PlatformMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+    // Reset state so it can happen again
+    bPlayerOnPlatform = false;
+    FlickerCount = 0;
 }

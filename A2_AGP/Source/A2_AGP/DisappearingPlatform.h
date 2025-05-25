@@ -10,45 +10,41 @@ class UBoxComponent;
 UCLASS()
 class A2_AGP_API ADisappearingPlatform : public AActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	ADisappearingPlatform();
+    ADisappearingPlatform();
 
 protected:
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* PlatformMesh;
+    UPROPERTY(VisibleAnywhere)
+    UStaticMeshComponent* PlatformMesh;
 
-	UPROPERTY(VisibleAnywhere)
-	UBoxComponent* TriggerBox;
+    UPROPERTY(VisibleAnywhere)
+    UBoxComponent* TriggerBox;
 
-	UPROPERTY()
-	AActor* PlayerActor;
+    FTimerHandle StayTimerHandle;
+    FTimerHandle FlickerTimerHandle;
+    FTimerHandle DisappearTimerHandle;
 
-	UPROPERTY()
-	bool bIsPlatformVisible = true;
+    int32 FlickerCount;
 
-	UPROPERTY()
-	FTimerHandle DelayBeforeFlickerTimer;
+    bool bPlayerOnPlatform;
 
-	UPROPERTY()
-	FTimerHandle FlickerTimer;
+    UFUNCTION()
+    void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+        bool bFromSweep, const FHitResult& SweepResult);
 
-	int32 FlickerCount = 0;
+    UFUNCTION()
+    void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	UFUNCTION()
-	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
-	void BeginFlicker();
-	void Flicker();
-	void DisappearPlatform();
-	void ResetPlatform();
+    void StartStayTimer();
+    void StartFlicker();
+    void Flicker();
+    void DisappearPlatform();
+    void ResetPlatform();
 };
