@@ -4,6 +4,9 @@
 #include "GameFramework/Actor.h"
 #include "DisappearingPlatform.generated.h"
 
+class UStaticMeshComponent;
+class UBoxComponent;
+
 UCLASS()
 class A2_AGP_API ADisappearingPlatform : public AActor
 {
@@ -19,27 +22,35 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	// Components
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Platform")
 	UStaticMeshComponent* PlatformMesh;
 
-	UPROPERTY(VisibleAnywhere)
-	class UBoxComponent* TriggerBox;
+	UPROPERTY(VisibleAnywhere, Category = "Platform")
+	UBoxComponent* TriggerBox;
 
-	// Timers
+	UPROPERTY()
+	bool bIsPlatformVisible;
+
+	UPROPERTY()
+	bool bPlayerStillOnPlatform;
+
+	UPROPERTY()
 	FTimerHandle DisappearTimer;
-	FTimerHandle ReappearTimer;
 
-	// Functions
-	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
-		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
-		bool bFromSweep, const FHitResult& SweepResult);
+	UPROPERTY()
+	FTimerHandle FlickerTimer;
+
+	int32 FlickerCount;
 
 	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
-		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	void Disappear();
-	void Reappear();
+	UFUNCTION()
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	void DisappearPlatform();
+	void StartFlicker();
+	void Flicker();
 };

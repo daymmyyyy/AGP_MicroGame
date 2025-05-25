@@ -7,6 +7,7 @@
 #include "UObject/GeneratedCppIncludes.h"
 #include "A2_AGP/DisappearingPlatform.h"
 #include "Runtime/Engine/Classes/Engine/HitResult.h"
+#include "Runtime/Engine/Classes/Engine/TimerHandle.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeDisappearingPlatform() {}
 
@@ -19,6 +20,7 @@ ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
+ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTimerHandle();
 UPackage* Z_Construct_UPackage__Script_A2_AGP();
 // End Cross Module References
 
@@ -36,13 +38,7 @@ struct Z_Construct_UFunction_ADisappearingPlatform_OnOverlapBegin_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// Functions\n" },
-#endif
 		{ "ModuleRelativePath", "DisappearingPlatform.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Functions" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComp_MetaData[] = {
 		{ "EditInline", "true" },
@@ -195,28 +191,40 @@ struct Z_Construct_UClass_ADisappearingPlatform_Statics
 		{ "ModuleRelativePath", "DisappearingPlatform.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlatformMesh_MetaData[] = {
-		{ "Category", "DisappearingPlatform" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// Components\n" },
-#endif
+		{ "Category", "Platform" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "DisappearingPlatform.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Components" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TriggerBox_MetaData[] = {
-		{ "Category", "DisappearingPlatform" },
+		{ "Category", "Platform" },
 		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "DisappearingPlatform.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsPlatformVisible_MetaData[] = {
+		{ "ModuleRelativePath", "DisappearingPlatform.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bPlayerStillOnPlatform_MetaData[] = {
+		{ "ModuleRelativePath", "DisappearingPlatform.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DisappearTimer_MetaData[] = {
+		{ "ModuleRelativePath", "DisappearingPlatform.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FlickerTimer_MetaData[] = {
 		{ "ModuleRelativePath", "DisappearingPlatform.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlatformMesh;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TriggerBox;
+	static void NewProp_bIsPlatformVisible_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsPlatformVisible;
+	static void NewProp_bPlayerStillOnPlatform_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bPlayerStillOnPlatform;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_DisappearTimer;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_FlickerTimer;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_ADisappearingPlatform_OnOverlapBegin, "OnOverlapBegin" }, // 40000687
+		{ &Z_Construct_UFunction_ADisappearingPlatform_OnOverlapBegin, "OnOverlapBegin" }, // 1219258243
 		{ &Z_Construct_UFunction_ADisappearingPlatform_OnOverlapEnd, "OnOverlapEnd" }, // 101721892
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -227,9 +235,25 @@ struct Z_Construct_UClass_ADisappearingPlatform_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_PlatformMesh = { "PlatformMesh", nullptr, (EPropertyFlags)0x00400000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ADisappearingPlatform, PlatformMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlatformMesh_MetaData), NewProp_PlatformMesh_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_TriggerBox = { "TriggerBox", nullptr, (EPropertyFlags)0x00400000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ADisappearingPlatform, TriggerBox), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TriggerBox_MetaData), NewProp_TriggerBox_MetaData) };
+void Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bIsPlatformVisible_SetBit(void* Obj)
+{
+	((ADisappearingPlatform*)Obj)->bIsPlatformVisible = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bIsPlatformVisible = { "bIsPlatformVisible", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ADisappearingPlatform), &Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bIsPlatformVisible_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsPlatformVisible_MetaData), NewProp_bIsPlatformVisible_MetaData) };
+void Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bPlayerStillOnPlatform_SetBit(void* Obj)
+{
+	((ADisappearingPlatform*)Obj)->bPlayerStillOnPlatform = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bPlayerStillOnPlatform = { "bPlayerStillOnPlatform", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ADisappearingPlatform), &Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bPlayerStillOnPlatform_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bPlayerStillOnPlatform_MetaData), NewProp_bPlayerStillOnPlatform_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_DisappearTimer = { "DisappearTimer", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ADisappearingPlatform, DisappearTimer), Z_Construct_UScriptStruct_FTimerHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DisappearTimer_MetaData), NewProp_DisappearTimer_MetaData) }; // 756291145
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_FlickerTimer = { "FlickerTimer", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ADisappearingPlatform, FlickerTimer), Z_Construct_UScriptStruct_FTimerHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FlickerTimer_MetaData), NewProp_FlickerTimer_MetaData) }; // 756291145
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ADisappearingPlatform_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_PlatformMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_TriggerBox,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bIsPlatformVisible,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_bPlayerStillOnPlatform,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_DisappearTimer,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADisappearingPlatform_Statics::NewProp_FlickerTimer,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ADisappearingPlatform_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ADisappearingPlatform_Statics::DependentSingletons[])() = {
@@ -272,10 +296,10 @@ ADisappearingPlatform::~ADisappearingPlatform() {}
 struct Z_CompiledInDeferFile_FID_Users_dayan_OneDrive_Documents_GitHub_AGP_MicroGame_A2_AGP_Source_A2_AGP_DisappearingPlatform_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ADisappearingPlatform, ADisappearingPlatform::StaticClass, TEXT("ADisappearingPlatform"), &Z_Registration_Info_UClass_ADisappearingPlatform, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ADisappearingPlatform), 1674641528U) },
+		{ Z_Construct_UClass_ADisappearingPlatform, ADisappearingPlatform::StaticClass, TEXT("ADisappearingPlatform"), &Z_Registration_Info_UClass_ADisappearingPlatform, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ADisappearingPlatform), 867868422U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_dayan_OneDrive_Documents_GitHub_AGP_MicroGame_A2_AGP_Source_A2_AGP_DisappearingPlatform_h_1222692709(TEXT("/Script/A2_AGP"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_dayan_OneDrive_Documents_GitHub_AGP_MicroGame_A2_AGP_Source_A2_AGP_DisappearingPlatform_h_3082433411(TEXT("/Script/A2_AGP"),
 	Z_CompiledInDeferFile_FID_Users_dayan_OneDrive_Documents_GitHub_AGP_MicroGame_A2_AGP_Source_A2_AGP_DisappearingPlatform_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_dayan_OneDrive_Documents_GitHub_AGP_MicroGame_A2_AGP_Source_A2_AGP_DisappearingPlatform_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

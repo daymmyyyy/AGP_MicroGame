@@ -75,3 +75,13 @@ DerivedDataCache/*
 /A2_AGP/Saved/Cooked
 /A2_AGP/Saved/StagedBuilds/Windows/A2_AGP/Content/Paks
 /A2_AGP/Saved/Shaders/PCD3D_SM6-PCD3D_SM6
+/A2_AGP/Saved/Logs
+*.log
+A2_AGP/Saved/Crashes/UECC-Windows-B692C1794448A9907FB867A9CD085C2A_0000/Breadcrumbs_RHIThread_0.txt
+*.log
+A2_AGP/Saved/Logs/A2_AGP-backup-2025.04.30-18.44.29.log
+A2_AGP/Saved/Logs/A2_AGP-backup-2025.05.02-08.35.31.log
+A2_AGP/Saved/Logs/A2_AGP-backup-2025.05.24-17.34.40.log
+A2_AGP/Saved/Logs/A2_AGP-backup-2025.04.30-18.44.29.log
+*.log
+A2_AGP/Saved/Crashes/UECC-Windows-B692C1794448A9907FB867A9CD085C2A_0000/CrashContext.runtime-xml

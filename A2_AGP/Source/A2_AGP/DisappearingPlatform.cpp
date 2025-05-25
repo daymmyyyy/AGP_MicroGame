@@ -4,38 +4,41 @@
 #include "TimerManager.h"
 #include "UObject/ConstructorHelpers.h"
 
-// Constructor
 ADisappearingPlatform::ADisappearingPlatform()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	// Create platform mesh
+	// Platform mesh
 	PlatformMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlatformMesh"));
 	SetRootComponent(PlatformMesh);
 
-	// Assign basic cube mesh
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(TEXT("/Engine/BasicShapes/Cube.Cube"));
 	if (CubeMesh.Succeeded())
 	{
 		PlatformMesh->SetStaticMesh(CubeMesh.Object);
-		PlatformMesh->SetRelativeScale3D(FVector(20.0f, 20.0f, 1.0f));  // Scale for platform shape
 	}
 
-	// Create trigger box
+	// Trigger box
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
 	TriggerBox->SetupAttachment(PlatformMesh);
-	TriggerBox->SetBoxExtent(FVector(100.f, 100.f, 50.f) * FVector(2.0f, 2.0f, 0.2f));  // Match mesh scale
 	TriggerBox->SetCollisionProfileName(TEXT("Trigger"));
-
-	// Bind overlap events
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &ADisappearingPlatform::OnOverlapBegin);
 	TriggerBox->OnComponentEndOverlap.AddDynamic(this, &ADisappearingPlatform::OnOverlapEnd);
-}
 
+	bIsPlatformVisible = true;
+}
 
 void ADisappearingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (PlatformMesh && TriggerBox)
+	{
+		FVector Origin, BoxExtent;
+		PlatformMesh->GetLocalBounds(Origin, BoxExtent);
+		TriggerBox->SetBoxExtent(BoxExtent);
+		TriggerBox->SetRelativeLocation(FVector(0, 0, BoxExtent.Z));
+	}
 }
 
 void ADisappearingPlatform::Tick(float DeltaTime)
@@ -46,31 +49,62 @@ void ADisappearingPlatform::Tick(float DeltaTime)
 void ADisappearingPlatform::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// Start disappear timer
-	GetWorldTimerManager().SetTimer(DisappearTimer, this, &ADisappearingPlatform::Disappear, 2.0f, false);
+	if (bIsPlatformVisible)
+	{
+		bPlayerStillOnPlatform = true;
+		StartFlicker();
+	}
 }
 
 void ADisappearingPlatform::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	// Start reappear timer
-	GetWorldTimerManager().SetTimer(ReappearTimer, this, &ADisappearingPlatform::Reappear, 1.0f, false);
-}
+	bPlayerStillOnPlatform = false;
 
-void ADisappearingPlatform::Disappear()
-{
-	if (PlatformMesh)
-	{
-		PlatformMesh->SetVisibility(false);
-		PlatformMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	}
-}
+	GetWorldTimerManager().ClearTimer(DisappearTimer);
+	GetWorldTimerManager().ClearTimer(FlickerTimer);
 
-void ADisappearingPlatform::Reappear()
-{
-	if (PlatformMesh)
+	if (!bIsPlatformVisible)
 	{
 		PlatformMesh->SetVisibility(true);
 		PlatformMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		bIsPlatformVisible = true;
 	}
+}
+
+
+void ADisappearingPlatform::StartFlicker()
+{
+	FlickerCount = 0;
+	GetWorldTimerManager().SetTimer(FlickerTimer, this, &ADisappearingPlatform::Flicker, 0.2f, true);
+}
+
+void ADisappearingPlatform::Flicker()
+{
+	if (FlickerCount >= 6) // After 3 flickers
+	{
+		GetWorldTimerManager().ClearTimer(FlickerTimer);
+
+		if (bPlayerStillOnPlatform)
+		{
+			DisappearPlatform();
+		}
+		else
+		{
+			PlatformMesh->SetVisibility(true); // Ensure it's visible
+		}
+		return;
+	}
+
+	bool bVisibleNow = (FlickerCount % 2 == 0);
+	PlatformMesh->SetVisibility(bVisibleNow);
+	FlickerCount++;
+}
+
+
+void ADisappearingPlatform::DisappearPlatform()
+{
+	PlatformMesh->SetVisibility(false);
+	PlatformMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	bIsPlatformVisible = false;
 }
