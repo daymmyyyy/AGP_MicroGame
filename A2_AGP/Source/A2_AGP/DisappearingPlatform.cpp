@@ -67,7 +67,7 @@ void ADisappearingPlatform::StartStayTimer()
 {
     // Wait 2 seconds before starting flicker
     GetWorldTimerManager().ClearTimer(StayTimerHandle);
-    GetWorldTimerManager().SetTimer(StayTimerHandle, this, &ADisappearingPlatform::StartFlicker, 1f, false);
+    GetWorldTimerManager().SetTimer(StayTimerHandle, this, &ADisappearingPlatform::StartFlicker, 1.0f, false);
 }
 
 void ADisappearingPlatform::StartFlicker()
@@ -84,7 +84,6 @@ void ADisappearingPlatform::Flicker()
         GetWorldTimerManager().ClearTimer(FlickerTimerHandle);
         DisappearPlatform();
 
-        // Set timer to reset platform after 3 seconds
         GetWorldTimerManager().SetTimer(DisappearTimerHandle, this, &ADisappearingPlatform::ResetPlatform, 1.5f, false);
         return;
     }

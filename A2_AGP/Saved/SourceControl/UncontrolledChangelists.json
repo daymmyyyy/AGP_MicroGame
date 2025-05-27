@@ -6,15 +6,20 @@
 			"description": "Default Uncontrolled Changelist",
 			"files": [
 				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/StarterContent/Architecture/Floor_400x400.uasset",
-				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/90/BEMTT3BEEBAS511O654GIJ.uasset",
-				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/8R/5LLUTHXQIDCAIQ7UHWQTRV.uasset",
-				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/U6/8CPR6A71DRO58GNGQ00CUZ.uasset",
-				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/XN/8WCH3R8PZ5HDAQRKEWBS4X.uasset",
 				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/4/7G/7KF1E9C4HVHF8VPQV4V7CO.uasset",
 				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/5/RO/8RYX11LQH08WK97VMOYKLP.uasset",
 				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/1M/4NOQRQ1NKKJ9T8I7GH4FUG.uasset",
 				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/CE/CWKTHMVAUC656AWX0YGRZ2.uasset",
-				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/L0/H22P5QP7J6PA6YI3XXXXQH.uasset"
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/L0/H22P5QP7J6PA6YI3XXXXQH.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/Audio/game-on-153596.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/UI/W_PowerUp1.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/UI/W_PowerUp2.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/UI/W_EndTime.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/Blueprints/BP_PowerUp.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/90/BEMTT3BEEBAS511O654GIJ.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/8R/5LLUTHXQIDCAIQ7UHWQTRV.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/U6/8CPR6A71DRO58GNGQ00CUZ.uasset",
+				"C:/Users/dayan/OneDrive/Documents/GitHub/AGP_MicroGame/A2_AGP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/XN/8WCH3R8PZ5HDAQRKEWBS4X.uasset"
 			]
 		}
 	]
